@@ -22,6 +22,8 @@
 		C9BE3387190B62940004BEE0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9BE336B190B62940004BEE0 /* CoreData.framework */; };
 		C9BE338F190B62940004BEE0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C9BE338D190B62940004BEE0 /* InfoPlist.strings */; };
 		C9BE3391190B62940004BEE0 /* HELPER_FILES_AND_CATEGORIESTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BE3390190B62940004BEE0 /* HELPER_FILES_AND_CATEGORIESTests.m */; };
+		C9BE339C190B62DE0004BEE0 /* MVHelperMethodsLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BE339B190B62DE0004BEE0 /* MVHelperMethodsLibrary.m */; };
+		C9BE33A2190B635F0004BEE0 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = C9BE33A1190B635F0004BEE0 /* UIColor+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		C9BE338C190B62940004BEE0 /* HELPER_FILES_AND_CATEGORIESTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HELPER_FILES_AND_CATEGORIESTests-Info.plist"; sourceTree = "<group>"; };
 		C9BE338E190B62940004BEE0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		C9BE3390190B62940004BEE0 /* HELPER_FILES_AND_CATEGORIESTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HELPER_FILES_AND_CATEGORIESTests.m; sourceTree = "<group>"; };
+		C9BE339A190B62DE0004BEE0 /* MVHelperMethodsLibrary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVHelperMethodsLibrary.h; sourceTree = "<group>"; };
+		C9BE339B190B62DE0004BEE0 /* MVHelperMethodsLibrary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVHelperMethodsLibrary.m; sourceTree = "<group>"; };
+		C9BE33A0190B635F0004BEE0 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		C9BE33A1190B635F0004BEE0 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +123,10 @@
 			children = (
 				C9BE3376190B62940004BEE0 /* MVAppDelegate.h */,
 				C9BE3377190B62940004BEE0 /* MVAppDelegate.m */,
+				C9BE339A190B62DE0004BEE0 /* MVHelperMethodsLibrary.h */,
+				C9BE339B190B62DE0004BEE0 /* MVHelperMethodsLibrary.m */,
+				C9BE33A0190B635F0004BEE0 /* UIColor+Extension.h */,
+				C9BE33A1190B635F0004BEE0 /* UIColor+Extension.m */,
 				C9BE337C190B62940004BEE0 /* Images.xcassets */,
 				C9BE3379190B62940004BEE0 /* HELPER_FILES_AND_CATEGORIES.xcdatamodeld */,
 				C9BE336E190B62940004BEE0 /* Supporting Files */,
@@ -250,8 +260,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9BE337B190B62940004BEE0 /* HELPER_FILES_AND_CATEGORIES.xcdatamodeld in Sources */,
+				C9BE33A2190B635F0004BEE0 /* UIColor+Extension.m in Sources */,
 				C9BE3374190B62940004BEE0 /* main.m in Sources */,
 				C9BE3378190B62940004BEE0 /* MVAppDelegate.m in Sources */,
+				C9BE339C190B62DE0004BEE0 /* MVHelperMethodsLibrary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +460,7 @@
 				C9BE3396190B62940004BEE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9BE3397190B62940004BEE0 /* Build configuration list for PBXNativeTarget "HELPER_FILES_AND_CATEGORIESTests" */ = {
 			isa = XCConfigurationList;
@@ -456,6 +469,7 @@
 				C9BE3399190B62940004BEE0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

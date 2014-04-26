@@ -10,11 +10,16 @@
 
 @interface MVHelperMethodsLibrary : NSObject
 
-+(char)randChar;
++(char)randomChar;
++(NSString *)getRandomStringOfLength:(NSInteger)length;
++(CGFloat)distanceBetween:(CGPoint)p1 and:(CGPoint)p2;
+
++(void)saveItem:(id)item toDefaultsWithKey:(NSString *)key;
++(id)getItemFromDefaulsForKey:(NSString *)key;
+
 +(void)saveArray:(NSMutableArray *)arrayToSave toFile:(NSString *)fileName;
 +(NSArray *)loadFile:(NSString *)fileName;
+
 +(NSString *)applicaitionDocumentsDirectory;
-+(NSString *)getRandomStringOf:(NSInteger)length;
-+(UIColor *)randomColor;
 
 @end
