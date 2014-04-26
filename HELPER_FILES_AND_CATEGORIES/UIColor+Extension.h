@@ -21,6 +21,18 @@
 +(CGFloat)getBlueAverageBetweenColor:(UIColor *)color1
                             andColor:(UIColor *)color2;
 
++(BOOL)isColor:(UIColor *)color1 withinVariance:(CGFloat)variance toColor:(UIColor *)color2;
++(BOOL)isColor:(UIColor *)color1 similerToColor:(UIColor *)color2;
+
++(BOOL)isRedValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toRedValueOfColor:(UIColor *)color2;
++(BOOL)isRedVlueofColor:(UIColor *)color1 similerToRedValueOfColor:(UIColor *)color2;
+
++(BOOL)isGreenValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toGreenValueOfColor:(UIColor *)color2;
++(BOOL)isGreenVlueofColor:(UIColor *)color1 similerToGreenValueOfColor:(UIColor *)color2;
+
++(BOOL)isBlueValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toBlueValueOfColor:(UIColor *)color2;
++(BOOL)isBlueVlueofColor:(UIColor *)color1 similerToBlueValueOfColor:(UIColor *)color2;
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

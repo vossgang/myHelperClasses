@@ -20,6 +20,79 @@
     return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
 
++(BOOL)isRedVlueofColor:(UIColor *)color1 similerToRedValueOfColor:(UIColor *)color2
+{
+    CGFloat variance = .05;
+    return [UIColor isRedValueOfColor:color1 withinVariance:variance toRedValueOfColor:color2];
+}
+
++(BOOL)isRedValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toRedValueOfColor:(UIColor *)color2
+{
+    const CGFloat *components = CGColorGetComponents([color1 CGColor]);
+    CGFloat red1   = components[0];
+    
+    components = CGColorGetComponents([color2 CGColor]);
+    CGFloat red2   = components[0];
+    
+    return (abs(red1 - red2) < variance);
+}
+
++(BOOL)isGreenVlueofColor:(UIColor *)color1 similerToGreenValueOfColor:(UIColor *)color2
+{
+    CGFloat variance = .05;
+    return [UIColor isGreenValueOfColor:color1 withinVariance:variance toGreenValueOfColor:color2];
+}
+
++(BOOL)isGreenValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toGreenValueOfColor:(UIColor *)color2
+{
+    const CGFloat *components = CGColorGetComponents([color1 CGColor]);
+    CGFloat green1   = components[1];
+    
+    components = CGColorGetComponents([color2 CGColor]);
+    CGFloat green2   = components[1];
+    
+    return (abs(green1 - green2) < variance);
+}
+
++(BOOL)isBlueVlueofColor:(UIColor *)color1 similerToBlueValueOfColor:(UIColor *)color2
+{
+    CGFloat variance = .05;
+    return [UIColor isBlueValueOfColor:color1 withinVariance:variance toBlueValueOfColor:color2];
+}
+
++(BOOL)isBlueValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toBlueValueOfColor:(UIColor *)color2
+{
+    const CGFloat *components = CGColorGetComponents([color1 CGColor]);
+    CGFloat blue1   = components[2];
+    
+    components = CGColorGetComponents([color2 CGColor]);
+    CGFloat blue2   = components[2];
+    
+    return (abs(blue1 - blue2) < variance);
+}
+
++(BOOL)isColor:(UIColor *)color1 withinVariance:(CGFloat)variance toColor:(UIColor *)color2
+{
+    const CGFloat *components = CGColorGetComponents([color1 CGColor]);
+    CGFloat red1    = components[0];
+    CGFloat green1  = components[1];
+    CGFloat blue1   = components[2];
+    CGFloat alpha1  = components[3];
+    
+    components = CGColorGetComponents([color2 CGColor]);
+    CGFloat red2    = components[0];
+    CGFloat green2  = components[1];
+    CGFloat blue2   = components[2];
+    CGFloat alpha2  = components[3];
+    
+    return ((abs(red1 - red2) < variance) && (abs(green1 - green2) < variance) && (abs(blue1 - blue2) < variance) && (abs(alpha1 - alpha2) < variance));
+}
+
++(BOOL)isColor:(UIColor *)color1 similerToColor:(UIColor *)color2
+{
+    CGFloat variance = .05;
+    return [UIColor isColor:color1 withinVariance:variance toColor:color2];
+}
 
 +(CGFloat)getRedAverageBetweenColor:(UIColor *)color1
                            andColor:(UIColor *)color2
