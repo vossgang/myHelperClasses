@@ -29,10 +29,13 @@
 +(NSArray *)getTwelveColors;
 +(NSArray *)getArrayOfTwelveColorsFromSeedColor:(UIColor *)mainColor;
 
+
+-(UIColor *)getBrownPalletColor;
+
+
 +(CGFloat)getHigestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3;
 +(CGFloat)getLowestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3;
 +(CGFloat)getMiddleValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3;
-
 
 +(BOOL)isColor:(UIColor *)color1 withinVariance:(CGFloat)variance toColor:(UIColor *)color2;
 +(BOOL)isColor:(UIColor *)color1 similerToColor:(UIColor *)color2;

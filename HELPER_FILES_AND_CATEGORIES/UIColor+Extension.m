@@ -128,6 +128,32 @@
     return colors;
 }
 
+
+
+
+
+-(UIColor *)getBrownPalletColor
+{
+    const CGFloat *components = CGColorGetComponents([self CGColor]);
+    CGFloat red     = components[0];
+    CGFloat green   = components[1];
+    CGFloat blue    = components[2];
+    
+    CGFloat high    = [UIColor getHigestValueOfFloat:red andFloat:green andFloat:blue];
+    CGFloat mid     = [UIColor getMiddleValueOfFloat:red andFloat:green andFloat:blue];
+    
+    
+    return [UIColor colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(mid / 5) alpha:1];
+}
+
+
+
+
+
+
+
+
+
 +(CGFloat)getMiddleValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3
 {
     if (((f1 > f2) && (f1 < f3)) || ((f1 > f3) && (f1 < f2))) {
@@ -141,7 +167,7 @@
 
 +(CGFloat)getHigestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3
 {
-    if ((f1 > f2) && (f1 < f3) ) {
+    if ((f1 > f2) && (f1 > f3) ) {
         return f1;
     }
     if (f2 > f3) {
