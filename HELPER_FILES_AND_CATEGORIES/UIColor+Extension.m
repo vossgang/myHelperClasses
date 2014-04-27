@@ -56,6 +56,149 @@
     return colors;
 }
 
++(NSArray *)randomColorPalletOfMaxSixteenColors:(NSInteger)numberOfColors
+{
+    NSMutableArray *colors      = [NSMutableArray new];
+    
+    UIColor *currentColor       = [UIColor randomColor];
+    
+    const CGFloat *components   = CGColorGetComponents([currentColor CGColor]);
+    CGFloat red                 = components[0];
+    CGFloat green               = components[1];
+    CGFloat blue                = components[2];
+    
+    for (int i = 0; i < numberOfColors; i++) {
+        switch (i) {
+            case 0:                                                                                                     break;
+            case 1:     currentColor = [UIColor colorWithRed:green green:red blue:blue alpha:1];                        break;
+            case 2:     currentColor = [UIColor colorWithRed:blue green:green blue:red alpha:1];                        break;
+            case 3:     currentColor = [UIColor colorWithRed:red green:blue blue:green alpha:1];                        break;
+            case 4:     currentColor = [UIColor colorWithRed:((red + green) / 2) green:green blue:blue alpha:1];        break;
+            case 5:     currentColor = [UIColor colorWithRed:((red + blue) / 2) green:green blue:blue alpha:1];         break;
+            case 6:     currentColor = [UIColor colorWithRed:((green + blue) / 2) green:green blue:blue alpha:1];       break;
+            case 7:     currentColor = [UIColor colorWithRed:red green:((red + green) / 2) blue:blue alpha:1];          break;
+            case 8:     currentColor = [UIColor colorWithRed:red green:((red + blue) / 2) blue:blue alpha:1];           break;
+            case 9:     currentColor = [UIColor colorWithRed:red green:((green + blue) / 2) blue:blue alpha:1];         break;
+            case 10:    currentColor = [UIColor colorWithRed:red green:green blue:((red + green) / 2) alpha:1];         break;
+            case 11:    currentColor = [UIColor colorWithRed:red green:green blue:((red + blue) / 2) alpha:1];          break;
+            case 12:    currentColor = [UIColor colorWithRed:red green:green blue:((green + blue) / 2) alpha:1];        break;
+            case 13:    currentColor = [UIColor colorWithRed:((red + green + blue) / 3) green:green blue:blue alpha:1]; break;
+            case 14:    currentColor = [UIColor colorWithRed:red green:((red + green + blue) / 3) blue:blue alpha:1];   break;
+            case 15:    currentColor = [UIColor colorWithRed:red green:green blue:((red + green + blue) / 3) alpha:1];  break;
+            default:
+                break;
+        }
+        [colors addObject:currentColor];
+    }
+
+    return colors;
+}
+
++(NSArray *)getTwelveColors
+{
+    return [UIColor getArrayOfTwelveColorsFromSeedColor:[UIColor randomColor]];
+}
+
++(NSArray *)getArrayOfTwelveColorsFromSeedColor:(UIColor *)mainColor
+{
+    const CGFloat *components = CGColorGetComponents([mainColor CGColor]);
+    CGFloat red     = components[0];
+    CGFloat green   = components[1];
+    CGFloat blue    = components[2];
+    
+    CGFloat high    = [UIColor getHigestValueOfFloat:red andFloat:green andFloat:blue];
+    CGFloat low     = [UIColor getLowestValueOfFloat:red andFloat:green andFloat:blue];
+    CGFloat mid     = [UIColor getMiddleValueOfFloat:red andFloat:green andFloat:blue];
+    
+    NSMutableArray *colors = [NSMutableArray new];
+    
+    [colors addObject:mainColor];
+    [colors addObject:[UIColor  colorWithRed:green green:red blue:blue alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:blue green:green blue:red alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:red green:blue blue:green alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:high green:high blue:low alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:high green:low blue:low alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:low green:high blue:low alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:low green:low blue:high alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:low green:high blue:high alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:high green:low blue:high alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:mid green:high blue:mid alpha:1]];
+    [colors addObject:[UIColor  colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(mid / 5) alpha:1]];
+    
+    return colors;
+}
+
++(CGFloat)getMiddleValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3
+{
+    if (((f1 > f2) && (f1 < f3)) || ((f1 > f3) && (f1 < f2))) {
+        return f1;
+    }
+    if (((f2 > f1) && (f2 < f3)) || ((f2 > f3) && (f2 < f1))) {
+        return f2;
+    }
+    return f3;
+}
+
++(CGFloat)getHigestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3
+{
+    if ((f1 > f2) && (f1 < f3) ) {
+        return f1;
+    }
+    if (f2 > f3) {
+        return f2;
+    }
+    return f3;
+}
+
++(CGFloat)getLowestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3
+{
+    if ((f1 < f2) && (f1 < f3)) {
+        return f1;
+    }
+    if (f2 < f3) {
+        return f2;
+    }
+    return f3;
+}
+
++(NSArray *)getColorPalletFromColor:(UIColor *)mainColor ofMaxSixteenColors:(NSInteger)numberOfColors
+{
+    NSMutableArray *colors      = [NSMutableArray new];
+    
+    UIColor *currentColor       = mainColor;
+    
+    const CGFloat *components   = CGColorGetComponents([currentColor CGColor]);
+    CGFloat red                 = components[0];
+    CGFloat green               = components[1];
+    CGFloat blue                = components[2];
+    
+    for (int i = 0; i < numberOfColors; i++) {
+        switch (i) {
+            case 0:                                                                                                     break;
+            case 1:     currentColor = [UIColor colorWithRed:green green:red blue:blue alpha:1];                        break;
+            case 2:     currentColor = [UIColor colorWithRed:blue green:green blue:red alpha:1];                        break;
+            case 3:     currentColor = [UIColor colorWithRed:red green:blue blue:green alpha:1];                        break;
+            case 4:     currentColor = [UIColor colorWithRed:((red + green) / 2) green:green blue:blue alpha:1];        break;
+            case 5:     currentColor = [UIColor colorWithRed:((red + blue) / 2) green:green blue:blue alpha:1];         break;
+            case 6:     currentColor = [UIColor colorWithRed:((green + blue) / 2) green:green blue:blue alpha:1];       break;
+            case 7:     currentColor = [UIColor colorWithRed:red green:((red + green) / 2) blue:blue alpha:1];          break;
+            case 8:     currentColor = [UIColor colorWithRed:red green:((red + blue) / 2) blue:blue alpha:1];           break;
+            case 9:     currentColor = [UIColor colorWithRed:red green:((green + blue) / 2) blue:blue alpha:1];         break;
+            case 10:    currentColor = [UIColor colorWithRed:red green:green blue:((red + green) / 2) alpha:1];         break;
+            case 11:    currentColor = [UIColor colorWithRed:red green:green blue:((red + blue) / 2) alpha:1];          break;
+            case 12:    currentColor = [UIColor colorWithRed:red green:green blue:((green + blue) / 2) alpha:1];        break;
+            case 13:    currentColor = [UIColor colorWithRed:((red + green + blue) / 3) green:green blue:blue alpha:1]; break;
+            case 14:    currentColor = [UIColor colorWithRed:red green:((red + green + blue) / 3) blue:blue alpha:1];   break;
+            case 15:    currentColor = [UIColor colorWithRed:red green:green blue:((red + green + blue) / 3) alpha:1];  break;
+            default:
+                break;
+        }
+        [colors addObject:currentColor];
+    }
+    
+    return colors;
+}
+
 +(NSArray *)randomColorPalletOfSixteenColors
 {
     NSMutableArray *colors = [NSMutableArray new];
@@ -1540,229 +1683,50 @@
 	return [UIColor colorWithRed:0.451 green:0.510 blue:0.463 alpha:1.0];
 }
 
-+(UIColor *)SmokeyTopazColor
-{
-	return [UIColor colorWithRed:0.514 green:0.165 blue:0.051 alpha:1.0];
-}
-
-+(UIColor *)SoapColor
-{
-	return [UIColor colorWithRed:0.808 green:0.784 blue:0.937 alpha:1.0];
-}
-
-+(UIColor *)SonicSilverColor
-{
-	return [UIColor colorWithRed:0.459 green:0.459 blue:0.459 alpha:1.0];
-}
-
-+(UIColor *)SpringFrostColor
-{
-	return [UIColor colorWithRed:0.529 green:1.000 blue:0.165 alpha:1.0];
-}
-
-+(UIColor *)SpringGreenColor
-{
-	return [UIColor colorWithRed:0.925 green:0.918 blue:0.745 alpha:1.0];
-}
-
-+(UIColor *)SteelBlueColor
-{
-	return [UIColor colorWithRed:0.000 green:0.506 blue:0.671 alpha:1.0];
-}
-
-+(UIColor *)SteelTealColor
-{
-	return [UIColor colorWithRed:0.373 green:0.541 blue:0.545 alpha:1.0];
-}
-
-+(UIColor *)StrawberryColor
-{
-	return [UIColor colorWithRed:0.988 green:0.353 blue:0.553 alpha:1.0];
-}
-
-+(UIColor *)SugarPlumColor
-{
-	return [UIColor colorWithRed:0.569 green:0.306 blue:0.459 alpha:1.0];
-}
-
-+(UIColor *)SunburntCyclopsColor
-{
-	return [UIColor colorWithRed:1.000 green:0.251 blue:0.298 alpha:1.0];
-}
-
-+(UIColor *)SunglowColor
-{
-	return [UIColor colorWithRed:1.000 green:0.812 blue:0.282 alpha:1.0];
-}
-
-+(UIColor *)SunnyPearlColor
-{
-	return [UIColor colorWithRed:0.949 green:0.949 blue:0.478 alpha:1.0];
-}
-
-+(UIColor *)SunsetOrangeColor
-{
-	return [UIColor colorWithRed:0.992 green:0.369 blue:0.325 alpha:1.0];
-}
-
-+(UIColor *)SunsetPearlColor
-{
-	return [UIColor colorWithRed:0.945 green:0.800 blue:0.475 alpha:1.0];
-}
-
-+(UIColor *)SweetBrownColor
-{
-	return [UIColor colorWithRed:0.659 green:0.216 blue:0.192 alpha:1.0];
-}
-
-+(UIColor *)TanColor
-{
-	return [UIColor colorWithRed:0.980 green:0.655 blue:0.424 alpha:1.0];
-}
-
-+(UIColor *)TartOrangeColor
-{
-	return [UIColor colorWithRed:0.984 green:0.302 blue:0.275 alpha:1.0];
-}
-
-+(UIColor *)TealBlueColor
-{
-	return [UIColor colorWithRed:0.094 green:0.655 blue:0.710 alpha:1.0];
-}
-
-+(UIColor *)ThistleColor
-{
-	return [UIColor colorWithRed:0.922 green:0.780 blue:0.875 alpha:1.0];
-}
-
-+(UIColor *)TickleMePinkColor
-{
-	return [UIColor colorWithRed:0.988 green:0.537 blue:0.675 alpha:1.0];
-}
-
-+(UIColor *)TigersEyeColor
-{
-	return [UIColor colorWithRed:0.710 green:0.412 blue:0.090 alpha:1.0];
-}
-
-+(UIColor *)TimberwolfColor
-{
-	return [UIColor colorWithRed:0.859 green:0.843 blue:0.824 alpha:1.0];
-}
-
-+(UIColor *)TropicalRainForestColor
-{
-	return [UIColor colorWithRed:0.090 green:0.502 blue:0.427 alpha:1.0];
-}
-
-+(UIColor *)TulipColor
-{
-	return [UIColor colorWithRed:1.000 green:0.529 blue:0.553 alpha:1.0];
-}
-
-+(UIColor *)TumbleweedColor
-{
-	return [UIColor colorWithRed:0.871 green:0.667 blue:0.533 alpha:1.0];
-}
-
-+(UIColor *)TurquoiseBlueColor
-{
-	return [UIColor colorWithRed:0.467 green:0.867 blue:0.906 alpha:1.0];
-}
-
-+(UIColor *)TurquoisePearlColor
-{
-	return [UIColor colorWithRed:0.231 green:0.737 blue:0.816 alpha:1.0];
-}
-
-+(UIColor *)TwilightLavenderColor
-{
-	return [UIColor colorWithRed:0.541 green:0.286 blue:0.420 alpha:1.0];
-}
-
-+(UIColor *)UnmellowYellowColor
-{
-	return [UIColor colorWithRed:1.000 green:1.000 blue:0.400 alpha:1.0];
-}
-
-+(UIColor *)VioletBlueColor
-{
-	return [UIColor colorWithRed:0.196 green:0.290 blue:0.698 alpha:1.0];
-}
-
-+(UIColor *)VioletPurpleColor
-{
-	return [UIColor colorWithRed:0.573 green:0.431 blue:0.682 alpha:1.0];
-}
-
-+(UIColor *)VioletRedColor
-{
-	return [UIColor colorWithRed:0.969 green:0.325 blue:0.580 alpha:1.0];
-}
-
-+(UIColor *)VividTangerineColor
-{
-	return [UIColor colorWithRed:1.000 green:0.627 blue:0.537 alpha:1.0];
-}
-
-+(UIColor *)VividVioletColor
-{
-	return [UIColor colorWithRed:0.561 green:0.314 blue:0.616 alpha:1.0];
-}
-
-+(UIColor *)WildBlueYonderColor
-{
-	return [UIColor colorWithRed:0.635 green:0.678 blue:0.816 alpha:1.0];
-}
-
-+(UIColor *)WildStrawberryColor
-{
-	return [UIColor colorWithRed:1.000 green:0.263 blue:0.643 alpha:1.0];
-}
-
-+(UIColor *)WildWatermelonColor
-{
-	return [UIColor colorWithRed:0.988 green:0.424 blue:0.522 alpha:1.0];
-}
-
-+(UIColor *)WinterSkyColor
-{
-	return [UIColor colorWithRed:1.000 green:0.000 blue:0.486 alpha:1.0];
-}
-
-+(UIColor *)WinterWizardColor
-{
-	return [UIColor colorWithRed:0.627 green:0.902 blue:1.000 alpha:1.0];
-}
-
-+(UIColor *)WintergreenDreamColor
-{
-	return [UIColor colorWithRed:0.337 green:0.533 blue:0.490 alpha:1.0];
-}
-
-+(UIColor *)WisteriaColor
-{
-	return [UIColor colorWithRed:0.804 green:0.643 blue:0.871 alpha:1.0];
-}
-
-+(UIColor *)YellowColor2
-{
-	return [UIColor colorWithRed:0.988 green:0.910 blue:0.514 alpha:1.0];
-}
-
-+(UIColor *)YellowGreenColor
-{
-	return [UIColor colorWithRed:0.773 green:0.890 blue:0.518 alpha:1.0];
-}
-
-+(UIColor *)YellowOrangeColor
-{
-	return [UIColor colorWithRed:1.000 green:0.714 blue:0.325 alpha:1.0];
-}
-
-+(UIColor *)YellowSunshineColor
-{
-	return [UIColor colorWithRed:1.000 green:0.969 blue:0.000 alpha:1.0];
-}
++(UIColor *)SmokeyTopazColor        {return [UIColor colorWithRed:0.514 green:0.165 blue:0.051 alpha:1.0];}
++(UIColor *)SoapColor               {return [UIColor colorWithRed:0.808 green:0.784 blue:0.937 alpha:1.0];}
++(UIColor *)SonicSilverColor        {return [UIColor colorWithRed:0.459 green:0.459 blue:0.459 alpha:1.0];}
++(UIColor *)SpringFrostColor        {return [UIColor colorWithRed:0.529 green:1.000 blue:0.165 alpha:1.0];}
++(UIColor *)SpringGreenColor        {return [UIColor colorWithRed:0.925 green:0.918 blue:0.745 alpha:1.0];}
++(UIColor *)SteelBlueColor          {return [UIColor colorWithRed:0.000 green:0.506 blue:0.671 alpha:1.0];}
++(UIColor *)SteelTealColor          {return [UIColor colorWithRed:0.373 green:0.541 blue:0.545 alpha:1.0];}
++(UIColor *)StrawberryColor         {return [UIColor colorWithRed:0.988 green:0.353 blue:0.553 alpha:1.0];}
++(UIColor *)SugarPlumColor          {return [UIColor colorWithRed:0.569 green:0.306 blue:0.459 alpha:1.0];}
++(UIColor *)SunburntCyclopsColor    {return [UIColor colorWithRed:1.000 green:0.251 blue:0.298 alpha:1.0];}
++(UIColor *)SunglowColor            {return [UIColor colorWithRed:1.000 green:0.812 blue:0.282 alpha:1.0];}
++(UIColor *)SunnyPearlColor         {return [UIColor colorWithRed:0.949 green:0.949 blue:0.478 alpha:1.0];}
++(UIColor *)SunsetOrangeColor       {return [UIColor colorWithRed:0.992 green:0.369 blue:0.325 alpha:1.0];}
++(UIColor *)SunsetPearlColor        {return [UIColor colorWithRed:0.945 green:0.800 blue:0.475 alpha:1.0];}
++(UIColor *)SweetBrownColor         {return [UIColor colorWithRed:0.659 green:0.216 blue:0.192 alpha:1.0];}
++(UIColor *)TanColor                {return [UIColor colorWithRed:0.980 green:0.655 blue:0.424 alpha:1.0];}
++(UIColor *)TartOrangeColor         {return [UIColor colorWithRed:0.984 green:0.302 blue:0.275 alpha:1.0];}
++(UIColor *)TealBlueColor           {return [UIColor colorWithRed:0.094 green:0.655 blue:0.710 alpha:1.0];}
++(UIColor *)ThistleColor            {return [UIColor colorWithRed:0.922 green:0.780 blue:0.875 alpha:1.0];}
++(UIColor *)TickleMePinkColor       {return [UIColor colorWithRed:0.988 green:0.537 blue:0.675 alpha:1.0];}
++(UIColor *)TigersEyeColor          {return [UIColor colorWithRed:0.710 green:0.412 blue:0.090 alpha:1.0];}
++(UIColor *)TimberwolfColor         {return [UIColor colorWithRed:0.859 green:0.843 blue:0.824 alpha:1.0];}
++(UIColor *)TropicalRainForestColor {return [UIColor colorWithRed:0.090 green:0.502 blue:0.427 alpha:1.0];}
++(UIColor *)TulipColor              {return [UIColor colorWithRed:1.000 green:0.529 blue:0.553 alpha:1.0];}
++(UIColor *)TumbleweedColor         {return [UIColor colorWithRed:0.871 green:0.667 blue:0.533 alpha:1.0];}
++(UIColor *)TurquoiseBlueColor      {return [UIColor colorWithRed:0.467 green:0.867 blue:0.906 alpha:1.0];}
++(UIColor *)TurquoisePearlColor     {return [UIColor colorWithRed:0.231 green:0.737 blue:0.816 alpha:1.0];}
++(UIColor *)TwilightLavenderColor   {return [UIColor colorWithRed:0.541 green:0.286 blue:0.420 alpha:1.0];}
++(UIColor *)UnmellowYellowColor     {return [UIColor colorWithRed:1.000 green:1.000 blue:0.400 alpha:1.0];}
++(UIColor *)VioletBlueColor         {return [UIColor colorWithRed:0.196 green:0.290 blue:0.698 alpha:1.0];}
++(UIColor *)VioletPurpleColor       {return [UIColor colorWithRed:0.573 green:0.431 blue:0.682 alpha:1.0];}
++(UIColor *)VioletRedColor          {return [UIColor colorWithRed:0.969 green:0.325 blue:0.580 alpha:1.0];}
++(UIColor *)VividTangerineColor     {return [UIColor colorWithRed:1.000 green:0.627 blue:0.537 alpha:1.0];}
++(UIColor *)VividVioletColor        {return [UIColor colorWithRed:0.561 green:0.314 blue:0.616 alpha:1.0];}
++(UIColor *)WildBlueYonderColor     {return [UIColor colorWithRed:0.635 green:0.678 blue:0.816 alpha:1.0];}
++(UIColor *)WildStrawberryColor     {return [UIColor colorWithRed:1.000 green:0.263 blue:0.643 alpha:1.0];}
++(UIColor *)WildWatermelonColor     {return [UIColor colorWithRed:0.988 green:0.424 blue:0.522 alpha:1.0];}
++(UIColor *)WinterSkyColor          {return [UIColor colorWithRed:1.000 green:0.000 blue:0.486 alpha:1.0];}
++(UIColor *)WinterWizardColor       {return [UIColor colorWithRed:0.627 green:0.902 blue:1.000 alpha:1.0];}
++(UIColor *)WintergreenDreamColor   {return [UIColor colorWithRed:0.337 green:0.533 blue:0.490 alpha:1.0];}
++(UIColor *)WisteriaColor           {return [UIColor colorWithRed:0.804 green:0.643 blue:0.871 alpha:1.0];}
++(UIColor *)YellowColor2            {return [UIColor colorWithRed:0.988 green:0.910 blue:0.514 alpha:1.0];}
++(UIColor *)YellowGreenColor        {return [UIColor colorWithRed:0.773 green:0.890 blue:0.518 alpha:1.0];}
++(UIColor *)YellowOrangeColor       {return [UIColor colorWithRed:1.000 green:0.714 blue:0.325 alpha:1.0];}
++(UIColor *)YellowSunshineColor     {return [UIColor colorWithRed:1.000 green:0.969 blue:0.000 alpha:1.0];}
 
 @end
