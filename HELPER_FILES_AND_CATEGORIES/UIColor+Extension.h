@@ -21,6 +21,10 @@
 +(CGFloat)getBlueAverageBetweenColor:(UIColor *)color1
                             andColor:(UIColor *)color2;
 
++(CGFloat)getColorBrightness:(UIColor *)color;
++(NSArray *)randomColorPalletOfFourColors;
++(NSArray *)randomColorPalletOfSixteenColors;
+
 +(BOOL)isColor:(UIColor *)color1 withinVariance:(CGFloat)variance toColor:(UIColor *)color2;
 +(BOOL)isColor:(UIColor *)color1 similerToColor:(UIColor *)color2;
 

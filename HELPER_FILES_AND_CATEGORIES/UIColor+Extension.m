@@ -20,6 +20,102 @@
     return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
 
++(CGFloat)getColorBrightness:(UIColor *)color
+{
+    const CGFloat *components = CGColorGetComponents([color CGColor]);
+    CGFloat red    = components[0];
+    CGFloat green  = components[1];
+    CGFloat blue   = components[2];
+    
+    return ((red + blue + green)/ 3);
+}
+
++(NSArray *)randomColorPalletOfFourColors
+{
+    NSMutableArray *colors = [NSMutableArray new];
+
+    UIColor *currentColor = [UIColor randomColor];
+    [colors addObject:currentColor];
+
+    const CGFloat *components = CGColorGetComponents([currentColor CGColor]);
+    CGFloat red    = components[0];
+    CGFloat green  = components[1];
+    CGFloat blue   = components[2];
+    
+    currentColor = [UIColor colorWithRed:green green:red blue:blue alpha:1];
+    
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:blue green:green blue:red alpha:1];
+    
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:blue blue:green alpha:1];
+    [colors addObject:currentColor];
+    
+    return colors;
+}
+
++(NSArray *)randomColorPalletOfSixteenColors
+{
+    NSMutableArray *colors = [NSMutableArray new];
+    
+    UIColor *currentColor = [UIColor randomColor];
+    [colors addObject:currentColor];
+    
+    const CGFloat *components = CGColorGetComponents([currentColor CGColor]);
+    CGFloat red    = components[0];
+    CGFloat green  = components[1];
+    CGFloat blue   = components[2];
+    
+    currentColor = [UIColor colorWithRed:green green:red blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:blue green:green blue:red alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:blue blue:green alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:((red + green) / 2) green:green blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:((red + blue) / 2) green:green blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:((green + blue) / 2) green:green blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:((red + green) / 2) blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:((red + blue) / 2) blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:((green + blue) / 2) blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:green blue:((red + green) / 2) alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:green blue:((red + blue) / 2) alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:green blue:((green + blue) / 2) alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:((red + green + blue) / 3) green:green blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:((red + green + blue) / 3) blue:blue alpha:1];
+    [colors addObject:currentColor];
+    
+    currentColor = [UIColor colorWithRed:red green:green blue:((red + green + blue) / 3) alpha:1];
+    [colors addObject:currentColor];
+    
+    return colors;
+}
+
 +(BOOL)isRedVlueofColor:(UIColor *)color1 similerToRedValueOfColor:(UIColor *)color2
 {
     CGFloat variance = .05;
