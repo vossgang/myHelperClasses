@@ -30,7 +30,7 @@
     return ((red + blue + green)/ 3);
 }
 
-+(NSArray *)randomColorPalletOfFourColors
++(NSArray *)randomColorPaletteOfFourColors
 {
     NSMutableArray *colors = [NSMutableArray new];
 
@@ -56,7 +56,7 @@
     return colors;
 }
 
-+(NSArray *)randomColorPalletOfMaxSixteenColors:(NSInteger)numberOfColors
++(NSArray *)randomColorPaletteOfMaxSixteenColors:(NSInteger)numberOfColors
 {
     NSMutableArray *colors      = [NSMutableArray new];
     
@@ -106,88 +106,94 @@
     CGFloat green   = components[1];
     CGFloat blue    = components[2];
     
-    CGFloat high    = [UIColor getHigestValueOfFloat:red andFloat:green andFloat:blue];
-    CGFloat low     = [UIColor getLowestValueOfFloat:red andFloat:green andFloat:blue];
-    CGFloat mid     = [UIColor getMiddleValueOfFloat:red andFloat:green andFloat:blue];
+    CGFloat high    = [mainColor getHigestRGBValueFromColor];
+    CGFloat low     = [mainColor getLowestRGBValueFromColor];
+    CGFloat mid     = [mainColor getMiddleRGBValueFromColor];
     
-    NSMutableArray *colors = [NSMutableArray new];
-    
-    [colors addObject:mainColor];
-    [colors addObject:[UIColor  colorWithRed:green green:red blue:blue alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:blue green:green blue:red alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:red green:blue blue:green alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:high green:high blue:low alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:high green:low blue:low alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:low green:high blue:low alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:low green:low blue:high alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:low green:high blue:high alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:high green:low blue:high alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:mid green:high blue:mid alpha:1]];
-    [colors addObject:[UIColor  colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(mid / 5) alpha:1]];
+    NSArray *colors =  @[mainColor,
+                         [UIColor  colorWithRed:green green:red blue:blue alpha:1],
+                         [UIColor  colorWithRed:blue green:green blue:red alpha:1],
+                         [UIColor  colorWithRed:red green:blue blue:green alpha:1],
+                         
+                         [UIColor  colorWithRed:high green:high blue:(low * .25) alpha:1],           //Yellow
+                         [UIColor  colorWithRed:high green:(low * .25) blue:(low * .25) alpha:1],    //Red
+                         [UIColor  colorWithRed:(low * .25) green:high blue:(low * .25) alpha:1],    //Green
+                         [UIColor  colorWithRed:(low * .25) green:(low * .25) blue:high alpha:1],    //Blue
+                         
+                         [UIColor  colorWithRed:(low * .25) green:high blue:high alpha:1],           //Cyan
+                         [UIColor  colorWithRed:high green:(low * .25) blue:high alpha:1],           //Megenta
+                         [UIColor  colorWithRed:mid green:(low * .25) blue:mid alpha:1],             //purple
+                         
+                         [UIColor  colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(high / 5) alpha:1]];  //brown
     
     return colors;
 }
 
+-(UIColor *)getYellowPaletteColor
+{
+    CGFloat high    = [self getHigestRGBValueFromColor];
+    CGFloat low     = [self getLowestRGBValueFromColor];
+    
+    return [UIColor  colorWithRed:high green:high blue:(low * .25) alpha:1];
+}
 
+-(UIColor *)getBrownPaletteColor
+{
+    CGFloat high    = [self getHigestRGBValueFromColor];
+    CGFloat mid     = [self getMiddleRGBValueFromColor];
+    
+    return [UIColor colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(mid / 5) alpha:1];
+}
 
-
-
--(UIColor *)getBrownPalletColor
+-(CGFloat)getMiddleRGBValueFromColor
 {
     const CGFloat *components = CGColorGetComponents([self CGColor]);
     CGFloat red     = components[0];
     CGFloat green   = components[1];
     CGFloat blue    = components[2];
     
-    CGFloat high    = [UIColor getHigestValueOfFloat:red andFloat:green andFloat:blue];
-    CGFloat mid     = [UIColor getMiddleValueOfFloat:red andFloat:green andFloat:blue];
+    if (((red > green) && (red < blue)) || ((red > blue) && (red < green))) {
+        return red;
+    }
+    if (((green > red) && (green < blue)) || ((green > blue) && (green < red))) {
+        return green;
+    }
+    return blue;
+}
+
+-(CGFloat)getHigestRGBValueFromColor
+{
+    const CGFloat *components = CGColorGetComponents([self CGColor]);
+    CGFloat red     = components[0];
+    CGFloat green   = components[1];
+    CGFloat blue    = components[2];
     
+    if ((red > green) && (red > blue) ) {
+        return red;
+    }
+    if (green > blue) {
+        return green;
+    }
+    return blue;
+}
+
+-(CGFloat)getLowestRGBValueFromColor
+{
+    const CGFloat *components = CGColorGetComponents([self CGColor]);
+    CGFloat red     = components[0];
+    CGFloat green   = components[1];
+    CGFloat blue    = components[2];
     
-    return [UIColor colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(mid / 5) alpha:1];
+    if ((red < green) && (red < blue) ) {
+        return red;
+    }
+    if (green < blue) {
+        return green;
+    }
+    return blue;
 }
 
-
-
-
-
-
-
-
-
-+(CGFloat)getMiddleValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3
-{
-    if (((f1 > f2) && (f1 < f3)) || ((f1 > f3) && (f1 < f2))) {
-        return f1;
-    }
-    if (((f2 > f1) && (f2 < f3)) || ((f2 > f3) && (f2 < f1))) {
-        return f2;
-    }
-    return f3;
-}
-
-+(CGFloat)getHigestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3
-{
-    if ((f1 > f2) && (f1 > f3) ) {
-        return f1;
-    }
-    if (f2 > f3) {
-        return f2;
-    }
-    return f3;
-}
-
-+(CGFloat)getLowestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3
-{
-    if ((f1 < f2) && (f1 < f3)) {
-        return f1;
-    }
-    if (f2 < f3) {
-        return f2;
-    }
-    return f3;
-}
-
-+(NSArray *)getColorPalletFromColor:(UIColor *)mainColor ofMaxSixteenColors:(NSInteger)numberOfColors
++(NSArray *)getColorPaletteFromColor:(UIColor *)mainColor ofMaxSixteenColors:(NSInteger)numberOfColors
 {
     NSMutableArray *colors      = [NSMutableArray new];
     
@@ -225,7 +231,7 @@
     return colors;
 }
 
-+(NSArray *)randomColorPalletOfSixteenColors
++(NSArray *)randomColorPaletteOfSixteenColors
 {
     NSMutableArray *colors = [NSMutableArray new];
     

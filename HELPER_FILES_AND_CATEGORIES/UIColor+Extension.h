@@ -22,30 +22,26 @@
                             andColor:(UIColor *)color2;
 
 +(CGFloat)getColorBrightness:(UIColor *)color;
-+(NSArray *)randomColorPalletOfFourColors;
-+(NSArray *)randomColorPalletOfMaxSixteenColors:(NSInteger)numberOfColors;
-+(NSArray *)randomColorPalletOfSixteenColors;
-+(NSArray *)getColorPalletFromColor:(UIColor *)mainColor ofMaxSixteenColors:(NSInteger)numberOfColors;
++(NSArray *)randomColorPaletteOfFourColors;
++(NSArray *)randomColorPaletteOfMaxSixteenColors:(NSInteger)numberOfColors;
++(NSArray *)randomColorPaletteOfSixteenColors;
++(NSArray *)getColorPaletteFromColor:(UIColor *)mainColor ofMaxSixteenColors:(NSInteger)numberOfColors;
 +(NSArray *)getTwelveColors;
 +(NSArray *)getArrayOfTwelveColorsFromSeedColor:(UIColor *)mainColor;
 
+-(UIColor *)getBrownPaletteColor;
+-(UIColor *)getYellowPaletteColor;
 
--(UIColor *)getBrownPalletColor;
-
-
-+(CGFloat)getHigestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3;
-+(CGFloat)getLowestValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3;
-+(CGFloat)getMiddleValueOfFloat:(CGFloat)f1 andFloat:(CGFloat)f2 andFloat:(CGFloat)f3;
+-(CGFloat)getHigestRGBValueFromColor;
+-(CGFloat)getLowestRGBValueFromColor;
+-(CGFloat)getMiddleRGBValueFromColor;
 
 +(BOOL)isColor:(UIColor *)color1 withinVariance:(CGFloat)variance toColor:(UIColor *)color2;
 +(BOOL)isColor:(UIColor *)color1 similerToColor:(UIColor *)color2;
-
 +(BOOL)isRedValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toRedValueOfColor:(UIColor *)color2;
 +(BOOL)isRedVlueofColor:(UIColor *)color1 similerToRedValueOfColor:(UIColor *)color2;
-
 +(BOOL)isGreenValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toGreenValueOfColor:(UIColor *)color2;
 +(BOOL)isGreenVlueofColor:(UIColor *)color1 similerToGreenValueOfColor:(UIColor *)color2;
-
 +(BOOL)isBlueValueOfColor:(UIColor *)color1 withinVariance:(CGFloat)variance toBlueValueOfColor:(UIColor *)color2;
 +(BOOL)isBlueVlueofColor:(UIColor *)color1 similerToBlueValueOfColor:(UIColor *)color2;
 
