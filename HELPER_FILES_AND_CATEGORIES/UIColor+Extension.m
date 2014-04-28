@@ -124,7 +124,8 @@
                          [UIColor  colorWithRed:high green:(low * .25) blue:high alpha:1],           //Megenta
                          [UIColor  colorWithRed:mid green:(low * .25) blue:mid alpha:1],             //purple
                          
-                         [UIColor  colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(high / 5) alpha:1]];  //brown
+                         [UIColor  colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(high / 5) alpha:1],  //brown
+                         [UIColor  colorWithRed:high green:((high + mid)  / 3) blue:0 alpha:1]];      //Orange
     
     return colors;
 }
