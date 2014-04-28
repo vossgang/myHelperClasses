@@ -26,7 +26,7 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
-+(CGFloat)distanceBetween:(CGPoint)p1 and:(CGPoint)p2
++(CGFloat)distanceBetweenPoint:(CGPoint)p1 andPoint:(CGPoint)p2
 {
     return sqrt(pow((p2.x - p1.x), 2) + pow((p2.y - p1.y), 2));
 }

@@ -12,7 +12,7 @@
 
 +(char)randomChar;
 +(NSString *)getRandomStringOfLength:(NSInteger)length;
-+(CGFloat)distanceBetween:(CGPoint)p1 and:(CGPoint)p2;
++(CGFloat)distanceBetweenPoint:(CGPoint)p1 andPoint:(CGPoint)p2;
 
 +(void)saveItem:(id)item toDefaultsWithKey:(NSString *)key;
 +(id)getItemFromDefaulsForKey:(NSString *)key;
