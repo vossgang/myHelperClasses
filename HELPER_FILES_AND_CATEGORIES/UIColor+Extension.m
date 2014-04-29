@@ -462,7 +462,7 @@
 {   // takes @"#123456"
     const char *cStr = [str cStringUsingEncoding:NSASCIIStringEncoding];
     long x = strtol(cStr+1, NULL, 16);
-    return [UIColor colorWithHex:x];
+    return [UIColor colorWithHex:(unsigned int)x];
 }
 
 +(UIColor *)colorWithHex:(UInt32)col
