@@ -22,6 +22,7 @@
                             andColor:(UIColor *)color2;
 
 +(CGFloat)getColorBrightness:(UIColor *)color;
++(UIColor *)changeBrightness:(UIColor *)color amount:(CGFloat)amount;
 +(NSArray *)randomColorPaletteOfFourColors;
 +(NSArray *)randomColorPaletteOfMaxSixteenColors:(NSInteger)numberOfColors;
 +(NSArray *)randomColorPaletteOfSixteenColors;

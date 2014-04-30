@@ -20,6 +20,23 @@
     return [UIColor colorWithRed:r green:g blue:b alpha:1];
 }
 
++(UIColor *)changeBrightness:(UIColor *)color amount:(CGFloat)amount
+{
+    CGFloat hue, saturation, brightness, alpha;
+    if ([color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha]) {
+        brightness += (amount-1.0);
+        return [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:alpha];
+    }
+    
+    CGFloat white;
+    if ([color getWhite:&white alpha:&alpha]) {
+        white += (amount-1.0);
+        white = MAX(MIN(white, 1.0), 0.0);
+        return [UIColor colorWithWhite:white alpha:alpha];
+    }
+    return nil;
+}
+
 +(CGFloat)getColorBrightness:(UIColor *)color
 {
     const CGFloat *components = CGColorGetComponents([color CGColor]);
