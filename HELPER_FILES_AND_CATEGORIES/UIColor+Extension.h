@@ -32,6 +32,7 @@
 
 -(UIColor *)getBrownPaletteColor;
 -(UIColor *)getYellowPaletteColor;
+-(UIColor *)getOrangePaletteColor;
 
 -(CGFloat)getHigestRGBValueFromColor;
 -(CGFloat)getLowestRGBValueFromColor;

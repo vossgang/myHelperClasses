@@ -163,6 +163,14 @@
     return [UIColor colorWithRed:(((2 * high) + (2 * mid)) / 5) green:((4 * mid)/ 5) blue:(mid / 5) alpha:1];
 }
 
+-(UIColor *)getOrangePaletteColor
+{
+    CGFloat high    = [self getHigestRGBValueFromColor];
+    CGFloat mid     = [self getMiddleRGBValueFromColor];
+
+    return [UIColor  colorWithRed:high green:((high + mid)  / 3) blue:0 alpha:1];
+}
+
 -(CGFloat)getMiddleRGBValueFromColor
 {
     const CGFloat *components = CGColorGetComponents([self CGColor]);
