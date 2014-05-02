@@ -78,4 +78,25 @@ char  randomChar()
     return i;
 }
 
++(void)rotateViewThisView:(UIView *)thisView
+{
+    NSOperationQueue *tick = [NSOperationQueue new];
+    [tick setMaxConcurrentOperationCount:1];
+    for (int i = 0; i < 60; i++) {
+        [tick addOperationWithBlock:^{
+            usleep(1000000);
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                CGAffineTransform transform = CGAffineTransformRotate(thisView.transform, M_PI / 30);
+                [UIView animateWithDuration:.3 animations:^{
+                    thisView.transform = transform;
+                }];//end of animation
+                
+            }];//end of MAIN Queue
+            
+            
+        }];//end of TICK Queue
+        
+    }//end of FOR
+}
+
 @end

@@ -21,5 +21,6 @@
 +(NSArray *)loadFile:(NSString *)fileName;
 
 +(NSString *)applicaitionDocumentsDirectory;
++(void)rotateViewThisView:(UIView *)thisView;
 
 @end
