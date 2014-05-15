@@ -26,6 +26,19 @@
     return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
++(CGPoint)randomPointRelativeToCircle:(CGRect)circle {
+    
+    double angle = arc4random() * M_2_PI;
+    
+    int x = cos(angle) * (circle.size.height / 2);
+    int y = sin(angle) * (circle.size.height / 2);
+    x = x + circle.origin.x;
+    y = y + circle.origin.y;
+    
+    return CGPointMake(x, y);
+    
+}
+
 +(CGFloat)distanceBetweenPoint:(CGPoint)p1 andPoint:(CGPoint)p2
 {
     return sqrt(pow((p2.x - p1.x), 2) + pow((p2.y - p1.y), 2));

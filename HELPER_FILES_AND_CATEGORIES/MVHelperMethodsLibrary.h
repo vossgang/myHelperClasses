@@ -23,4 +23,6 @@
 +(NSString *)applicaitionDocumentsDirectory;
 +(void)rotateViewThisView:(UIView *)thisView;
 
++(CGPoint)randomPointRelativeToCircle:(CGRect)circle;
+
 @end
